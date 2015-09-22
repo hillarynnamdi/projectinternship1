@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require 'test_helper'
 
 class WelcomeControllerTest < ActionController::TestCase
@@ -6,12 +5,3 @@ class WelcomeControllerTest < ActionController::TestCase
   #   assert true
   # end
 end
-=======
-require 'test_helper'
-
-class WelcomeControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-end
->>>>>>> 61693db46d311cfaea957361435f88a706f0f4c9

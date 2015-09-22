@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
  
 
-
   get 'clients/index'
 
    root 'welcome#index'
@@ -17,8 +16,7 @@ Rails.application.routes.draw do
     resources:account_confirmation
     resources:dashboard
     resources:welcome
-    resources:forgot_password
-
+    resources:clients
 
 
 
