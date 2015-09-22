@@ -21,9 +21,9 @@ end
   		user=Users.find_by(activation_token: params[:id])
 			if user
 
-				@activated=Users.update_all "account_activated = 'true', activation_token = ' ' "
-				
-				if @activated
+
+				@activated=user.update_activation			
+
 				session[:confirm_email]="true"
 				redirect_to account_confirmation_path(user.company_name)
 

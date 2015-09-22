@@ -5,11 +5,15 @@ class Users < ActiveRecord::Base
 	before_create {generate_token(:auth_token)}
 	before_save { self.email = email.downcase }
 
-	#with_options presence: :true do |pres|
-
-
+	has_secure_password validations: false
+	validates:password, presence:true
+	validates:password, confirmation:true,if: "password.present?"
+	validates:password, length: { minimum: 6 },if: "password.present?"
 	
 
+
+	validates:first_name, presence:true
+	validates:first_name, length: { maximum: 50 },if: "first_name.present?"
 	validates:first_name, presence:true,
 	length: { maximum: 50 },if: "first_name.present?"
 	
@@ -56,7 +60,7 @@ class Users < ActiveRecord::Base
 	validates:company_phone,length: { minimum: 11 },if: "company_phone.present?"
 	
 
-has_secure_password
+	
 
 
 	
@@ -70,13 +74,37 @@ has_secure_password
 
 
 
-	private
-		def confirmation_token
-			if self.activation_token.blank?
-				self.activation_token = SecureRandom.urlsafe_base64.to_s
-		end
+
+
+	def clear_forgott_token
+		update_attribute(:forgot_token,  nil)
+    	update_attribute(:forgot_token_sent_at, nil)
+	end
+	
+
+
+	
+	def forgott_token
+			update_attribute(:forgot_token,  SecureRandom.urlsafe_base64)
+    		update_attribute(:forgot_token_sent_at, Time.zone.now)	
 	end
 
+
+	def update_activation
+
+			update_attribute(:account_activated,  true)
+    		update_attribute(:activation_token, nil)	
+	end
+
+
+
+
+	private
+		def confirmation_token
+			if 	self.activation_token.blank?
+				self.activation_token = SecureRandom.urlsafe_base64.to_s
+			end
+	end
 
 
 end

@@ -1,3 +1,4 @@
+
 $(document).ready(
 	function(){
 		$("#close").click(
@@ -7,5 +8,6 @@ $(document).ready(
 		)
 	}
 )
+
 
 

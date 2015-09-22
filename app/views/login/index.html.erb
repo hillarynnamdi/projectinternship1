@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro">
 
 <% provide(:title,'InvoiceR-Login') %>
@@ -21,9 +22,13 @@
 				<td><%= password_field_tag :password %></td></tr>
 				<tr><td><%= label_tag :remember_me %></td>
 				<td><%= check_box_tag :remember_me, 1, params[:remember_me] %></td></tr>
-				<tr><td><%= link_to "Don't have an account?",sign_up_index_path %></td>
+				<tr><td>&nbsp;</td>
 				<td><%= submit_tag 'LOGIN' %></td></tr>
+				<tr><td>&nbsp;</td><td><%= link_to "Forgot password?",forgot_password_index_path %></td></tr>
+				<tr><td>&nbsp;</td><td><%= link_to "Don't have an account?",sign_up_index_path %></td></tr>
+
 			</table>
 		<% end %>
+
 
 </div>
