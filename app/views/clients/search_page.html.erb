@@ -1,0 +1,27 @@
+<% provide(:title,'search page') %>
+<div class='client_list'>
+		<div class='table_div'>
+			<span id='loginflash'><% flash.each do |name, msg| %>
+					<%= content_tag :div, msg, class: name %>
+					<% end %>
+					</span>
+						<table class='client_table'>
+				<tr>
+					<th>S/N</th><th>FIRSTNAME</th><th>LASTNAME</th><th>NUMBER OF INVOICE</th>
+				</tr>
+					<% @search_clients.each do |client| %>
+				<tr>
+					<td><%= client.id %></td>
+					<td><%= client.first_name %></td>
+					<td><%= client.last_name %></td>
+					<td>3</td>
+					<td> <%= link_to "Archive",clients_path(client), method: :delete %>
+					</td>
+				</tr>
+				<% end %>
+			</table>
+			<p>
+					<%= will_paginate @pagination %>
+			</p>
+		</div>
+	</div>

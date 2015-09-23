@@ -2,6 +2,7 @@ class Clients < ActiveRecord::Base
 	before_save { self.email = email.downcase }
 	belongs_to :user
 
+
 	#validates:first_name, presence:true
 
 	validates:first_name, presence:true
@@ -17,5 +18,8 @@ class Clients < ActiveRecord::Base
 	validates:email, format: { with: VALID_EMAIL_REGEX },if: "email.present?"
 	validates:email, uniqueness: { case_sensitive: false },if: "email.present?"
 
-
+def self.search(search)
+	where("first_name LIKE ?", "%#{search}%")
+	
+end
 end

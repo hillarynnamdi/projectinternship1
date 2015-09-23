@@ -1,22 +1,23 @@
 
 Rails.application.routes.draw do
 
+ root 'welcome#index'
 
- 
-
+  get 'clients/search_page'
   get 'clients/index'
-
-   root 'welcome#index'
-
+  get 'clients/search_page' => 'clients#search_page'
+  get 'clients/edit'
+   resources:clients
    resources:sign_up
    resources:login
 
    get "welcome/user"
+   get 'clients/search'
 
     resources:account_confirmation
     resources:dashboard
     resources:welcome
-    resources:clients
+    
 
 
 

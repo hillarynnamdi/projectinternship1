@@ -1,7 +1,21 @@
 <% provide(:title,'Clients Page') %>
 <div class='client_wrapper'>
-	<div><%= link_to 'ADD CLIENT' , new_client_path %></div>
-	<div class='client_list'>
+	<div class='header'>
+		<div class='add_client'>
+			<%= link_to 'ADD CLIENT' , new_client_path %>
+		</div>
+		<div class='search_client'>
+			
+			<%= form_tag clients_search_page_path, method: :get do  %>
+
+					    <table><tr>
+							<td><%= search_field_tag :search, params[:search] %></td>
+							<td><%= submit_tag 'SEARCH',:name => nil %></td></tr>
+						</table>
+			<%end%>
+		</div>
+	</div>
+		<div class='client_list'>
 		<div class='table_div'>
 			<span id='loginflash'><% flash.each do |name, msg| %>
 					<%= content_tag :div, msg, class: name %>
@@ -16,9 +30,15 @@
 					<td><%= client.id %></td>
 					<td><%= client.first_name %></td>
 					<td><%= client.last_name %></td>
+					<td>3</td>
+					<td> <%= link_to "Archive",clients_path(client), method: :delete %>
+					</td>
 				</tr>
 				<% end %>
 			</table>
+			<p>
+					<%= will_paginate @clients %>
+			</p>
 		</div>
 	</div>
 <div>
